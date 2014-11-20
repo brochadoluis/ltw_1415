@@ -1,8 +1,13 @@
-/*drop de todas as tabelas*/
+/* drop all tables */
 DROP TABLE IF EXISTS User CASCADE;
 DROP TABLE IF EXISTS Poll CASCADE;
 DROP TABLE IF EXISTS Question CASCADE;
 DROP TABLE IF EXISTS Answer CASCADE;
+DROP TABLE IF EXISTS Link CASCADE;
+DROP TABLE IF EXISTS Category CASCADE;
+DROP TABLE IF EXISTS PollCategory CASCADE;
+DROP TABLE IF EXISTS Message CASCADE;
+
 
 CREATE TYPE permission AS ENUM ('public', 'private');
 
@@ -41,7 +46,7 @@ CREATE TABLE IF NOT EXISTS Question (
 );
 
 /* Answers */
-CREATE TABLE IF NOT EXISTS Question (
+CREATE TABLE IF NOT EXISTS Answer (
 	idAnswer 	SERIAL PRIMARY KEY,
 	idQuestion 	INTEGER REFERENCES Question ON DELETE CASCADE
 );
@@ -59,7 +64,7 @@ CREATE TABLE IF NOT EXISTS Category (
 );
 
 /* Polls Categories */
-CREATE TABLE IF NOT EXISTS PollsCategory (
+CREATE TABLE IF NOT EXISTS PollCategory (
   idPoll 	INTEGER,
   name      VARCHAR,
   CONSTRAINT UNIQUE (idPoll, name), 
