@@ -15,7 +15,7 @@ CREATE TYPE permission AS ENUM ('public', 'private');
 /* Users */
 CREATE TABLE IF NOT EXISTS User (
 	idUser		SERIAL PRIMARY KEY,
-	username 	VARCHAR(16) 	NOT NULL
+  username VARCHAR(16) NOT NULL,
 	name 		VARCHAR 		NOT NULL,
 	localidade 	VARCHAR 		NOT NULL,
 	passwor 	VARCHAR 		NOT NULL,
