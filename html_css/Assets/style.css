@@ -1,0 +1,126 @@
+body {
+    margin: 0
+}
+
+
+* {
+ box-sizing: border-box;
+}
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    width: 980px;
+}
+
+.page_body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.header_navigation {
+    list-style: outside none none;
+}
+
+.header_item {
+    float: left;
+}
+
+.header_loggedOut {
+    padding-top: 1px;
+    padding-bottom: 75px;
+    background-color: #F5F5F5;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.logo {
+background: url("/Backgrounds/Logo.png") no-repeat 0 0;
+width: 70px;
+height: 71px;
+float: left;
+cursor: pointer;
+
+}
+
+
+
+.header_login {
+    float: right;
+    margin-top: 12px;
+    margin-bottom: -3px;
+}
+
+.header_login .button {
+    margin-left: 5px;
+}
+
+.button:focus, .minibutton:focus {
+    text-decoration: none;
+    border-color: #51A7E8;
+    outline: medium none;
+    box-shadow: 0px 0px 5px rgba(81, 167, 232, 0.5);
+}
+
+.button, .minibutton {
+    position: relative;
+    display: inline-block;
+    padding: 7px 12px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #333;
+    text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.9);
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #EEE;
+    background-image: linear-gradient(#FCFCFC, #EEE);
+    background-repeat: repeat-x;
+    border: 1px solid #D5D5D5;
+    border-radius: 3px;
+}
+
+.header_link {
+    display: block;
+    padding: 20px 10px;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 20px;
+}
+
+.header_link:hover, .header_link:focus {
+    color: #4183C4;
+    text-decoration: none;
+}
+
+
+
+h1 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    line-height: 1.1;
+}
+
+.signup_section {
+    background: url("/Backgrounds/CrystalColor.jpg") repeat scroll center top #202021;
+    padding-top: 80px;
+    padding-bottom: 327px;
+    position: relative;
+    text-shadow: 0px 1px 3px #222;
+}
+.signup_section .heading {
+    margin-top: 0px;
+    padding-top: 10px;
+    font-size: 70px;
+    font-weight: normal;
+    line-height: 1;
+    color: #FFF;
+    letter-spacing: -1px;
+}
+.signup_section .subheading {
+    margin: 10px 0px 0px;
+    font-size: 24px;
+    line-height: 1.5;
+    color: #FFF;
+}
+.signup_section .subheading a {
+    font-weight: 500;
+}
