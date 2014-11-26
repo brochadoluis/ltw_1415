@@ -18,8 +18,8 @@ CREATE TABLE IF NOT EXISTS User (
   idUser   SERIAL PRIMARY KEY,
   username VARCHAR(16)     NOT NULL,
   name     VARCHAR         NOT NULL,
-	localidade 	VARCHAR 		NOT NULL,
-  passwor  VARCHAR         NOT NULL,
+  town     VARCHAR NOT NULL,
+  password VARCHAR NOT NULL,
   email    VARCHAR UNIQUE  NOT NULL,
 	ocupation 	VARCHAR 		NOT NULL,
 	fotograph 	VARCHAR,
@@ -34,8 +34,6 @@ CREATE TABLE IF NOT EXISTS Poll (
   data_post      DATE DEFAULT CURRENT_DATE,
   fotograph      VARCHAR     NOT NULL,
   idCreator      INTEGER REFERENCES User ON DELETE CASCADE,
-  idQuestion     INTEGER REFERENCES Question ON DELETE CASCADE,
-  idAnswer       INTEGER REFERENCES Answer ON DELETE CASCADE,
   pollPermission permission,
   pollState      state
 
@@ -45,7 +43,6 @@ CREATE TABLE IF NOT EXISTS Poll (
 CREATE TABLE IF NOT EXISTS Question (
 	idQuestion 	SERIAL PRIMARY KEY,
   idPoll INTEGER REFERENCES Poll ON DELETE CASCADE,
-	idAnswer 	INTEGER REFERENCES Answer 	ON DELETE CASCADE
 );
 
 /* Answers */
@@ -69,11 +66,11 @@ CREATE TABLE IF NOT EXISTS Category (
 
 /* Polls Categories */
 CREATE TABLE IF NOT EXISTS PollCategory (
-  idPoll INTEGER,
-  name      VARCHAR,
-  UNIQUE (idPoll, name),
+  idPoll     INTEGER,
+  idCategory INTEGER,
+  UNIQUE (idPoll, idCategory),
   FOREIGN KEY (idPoll) REFERENCES Poll ON DELETE CASCADE,
-  FOREIGN KEY (NAME) REFERENCES CATEGORY ON DELETE CASCADE
+  FOREIGN KEY (idCategory) REFERENCES Category ON DELETE CASCADE
 );
 /* Messages */
 CREATE TABLE IF NOT EXISTS Message (
@@ -83,3 +80,37 @@ CREATE TABLE IF NOT EXISTS Message (
   title    VARCHAR      NOT NULL,
   content  VARCHAR(140) NOT NULL
 );
+
+
+/* POPULATING DB */
+
+
+/* id, username, name, town, password, email, ocupation, photograph */
+INSERT INTO User
+VALUES (DEFAULT, 'luisreis', 'Luis Reis', 'Porto', 'projetoltw', 'luisreis@fe.up.pt', 'student', 'path');
+INSERT INTO User
+VALUES (DEFAULT, 'joaocardoso', 'Joao Cardoso', 'Porto', 'projetoltw', 'joaocardoso@fe.up.pt', 'student', 'path');
+
+/* id, title, data_post, photograph, idCreator, pollPermission, pollState */
+INSERT INTO Poll VALUES (DEFAULT, 'First Poll', '26-11-2014', 'path', 1, 'public', 'opened');
+
+/* id, Poll */
+INSERT INTO Question VALUES (DEFAULT, 1);
+
+/* id, Respondant, Question */
+INSERT INTO Answer VALUES (DEFAULT, 1, 1);
+
+/* href, link */
+INSERT INTO Link VALUES ('http://qualquercoisa', 'site');
+
+/* id, name */
+INSERT INTO Category VALUES (DEFAULT, 'Desporto');
+
+/* Poll, Category */
+INSERT INTO PollCategory VALUES (1, '1');
+
+/* id, Sender, Receiver, title, content */
+INSERT INTO Message VALUES (DEFAULT, 1, 2, 'sem titulo', 'mensagem generica');
+
+
+/* TRIGGERS */
