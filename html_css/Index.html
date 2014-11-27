@@ -5,28 +5,46 @@
     <title>
         VotePoll · Polls Made Better
     </title>
-    <link type="text/css" rel="stylesheet" href="/Assets/style.css"
+    <link type="text/css" rel="stylesheet" href="Assets/style.css"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js?ver=1.4.2"></script>
+    <script src="js/login.js"></script>
 </head>
 
 <body class="page_loggedOut">
     <div class="page_body">
         <div class="header_loggedOut" role="banner">
             <div class="navbar container">
-                <a class="logo" href="Index.html">
-                    <span class="ico icon_logo"></span>
-                </a>
-                <div class="header_login" role="navigation">
-                    <a class="button" href="/Login.html">Login</a>
+                  <div id="loginContainer">
+                    <a href="#" id="loginButton"><span>Login</span><em></em></a>
+                    <div style="clear:both"></div>
+                     <div id="loginBox">                
+                        <form id="loginForm">
+                        <fieldset id="body">
+                            <fieldset>
+                                <label for="username">Username</label>
+                                <input type="text" name="username" id="username" />
+                            </fieldset>
+                            <fieldset>
+                                <label for="password">Password</label>
+                                <input type="password" name="password" id="password" />
+                            </fieldset>
+                            <input type="submit" id="login" value="Sign in" />
+                        </fieldset>
+                    </form>
                 </div>
+            </div>
+
+               
+
                 <ul class="header_navigation" role="navigation">
                     <li class="header_item">
-                        <a class="header_link" href="/Polls.html">Polls</a>
+                        <a class="header_link" href="Index.html">Home</a>
                     </li>
                     <li class="header_item">
-                        <a class="header_link" href="/About.html">About</a>
+                        <a class="header_link" href="Polls.html">Polls</a>
                     </li>
                     <li class="header_item">
-                        <a class="header_link" href="/Developers.html">Developers</a>
+                        <a class="header_link" href="Developers.html">Developers</a>
                     </li>
                 </ul>
             </div>
@@ -40,7 +58,7 @@
                         </h1>
                         <p class="subheading">
                             A website of pure voting enjoyment. Create, share and vote. Pools at it's best.
-                            <a href="/Info.html">Learn more about it.</a>
+                            <a href="Info.html">Learn more about it.</a>
                         </p>
                     </div>
                 </div>
