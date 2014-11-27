@@ -118,3 +118,4 @@
         $stmt = $conn->prepare("DELETE FROM Message WHERE idMessage = ?");
         return $stmt->execute(array($idMessage));
     }
+?>
