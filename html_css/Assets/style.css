@@ -25,7 +25,7 @@ body {
 .header_item {
     float: left;
     display:inline-block;
-    background: url("../Backgrounds/CrystalColor.jpg") no-repeat;
+    background: url("../images/CrystalColor.jpg") no-repeat;
     background-size: 1000px 500px;
     /*background:#4682B4;*/
     border:1px solid #899caa; 
@@ -44,7 +44,7 @@ body {
 }
 
 .logo {
-    background: url("../Backgrounds/Logo.png") no-repeat 0 0;
+    background: url("../images/Logo.png") no-repeat 0 0;
     width: 70px;
     height: 71px;
     float: left;
@@ -78,7 +78,7 @@ h1 {
 }
 
 .signup_section {
-    background: url("../Backgrounds/CrystalColor.jpg") repeat scroll center top #202021;
+    background: url("../images/CrystalColor.jpg") repeat scroll center top #202021;
     padding-top: 80px;
     padding-bottom: 327px;
     position: relative;
