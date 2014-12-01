@@ -5,6 +5,7 @@ body {
 
 * {
     box-sizing: border-box;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .container {
@@ -25,9 +26,8 @@ body {
 .header_item {
     float: left;
     display:inline-block;
-    background: url("../images/CrystalColor.jpg") no-repeat;
+    background: url("http://i61.tinypic.com/s1q6ag.jpg") no-repeat;
     background-size: 1000px 500px;
-    /*background:#4682B4;*/
     border:1px solid #899caa; 
     border-radius:10px;
     -moz-border-radius:10px;
@@ -78,7 +78,7 @@ h1 {
 }
 
 .signup_section {
-    background: url("../images/CrystalColor.jpg") repeat scroll center top #202021;
+    background: url("http://i61.tinypic.com/s1q6ag.jpg");
     padding-top: 80px;
     padding-bottom: 327px;
     position: relative;
@@ -114,7 +114,8 @@ h1 {
 #loginButton { 
     display:inline-block;
     float:right;
-    background:#4682B4;
+    background: url("http://i61.tinypic.com/s1q6ag.jpg");
+    background-size: 1000px 500px;
     border:1px solid #899caa; 
     border-radius:10px;
     -moz-border-radius:10px;
@@ -134,7 +135,7 @@ h1 {
 }
 
 #loginButton:hover {
-    background: white;
+    background: #4682B4;
 }
 
 /* Login Box */
@@ -148,7 +149,7 @@ h1 {
 
 /* If the Login Button has been clicked */    
 #loginButton.active {
-    border-radius:3px 3px 0 0;
+    border-radius:10px 10px 0 0;
 }
 
 #loginButton.active span {
@@ -240,4 +241,21 @@ fieldset#body {
     -webkit-box-shadow:none;
     margin:0 12px 0 0;
     cursor:pointer;
+}
+
+#signup {
+    float: right;
+}
+
+#signup h2 {
+    color: white;
+    font-weight: bold;
+}
+
+b {
+    color: white;
+}
+
+i {
+    color: white;
 }
