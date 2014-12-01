@@ -3,16 +3,18 @@
  */
 
 function loginSubmit() {
+    var formData = {username: $('#username').val(), password: $('#password').val()};
+    console.log(formData);
 // AJAX Code To Submit Form.
     $.ajax({
         type: "POST",
         url: "../php/login.php",
-        data: {username: $('#username').val(), password: $('#password').val()},
+        data: formData,// {username: $('#username').val(), password: $('#password').val()},
         dataType: 'json',
-        success: function (data) {
+        success: function (formData) {
+            alert(formData);
             alert('Inside success function!');
-            alert(data);// show response from the php script
-            console.log(data);
+            alert(formData);// show response from the php script
         }
     });
 }
