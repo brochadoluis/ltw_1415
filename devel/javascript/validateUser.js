@@ -12,9 +12,10 @@ function loginSubmit() {
         data: formData,// {username: $('#username').val(), password: $('#password').val()},
         dataType: 'json',
         success: function (formData) {
-            alert(formData);
+            alert('hello');
             alert('Inside success function!');
-            alert(formData);// show response from the php script
+            alert('bye');// show response from the php script
+            window.location.href = "../html/Polls.html";
         }
     });
 }

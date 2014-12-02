@@ -1,7 +1,7 @@
 <?php
 function createUser($username, $name, $town, $password, $email, $ocupation, $pic)
 {
-    global $conn;
+    //global $conn;
     $stmt = $conn->prepare("INSERT INTO Editor VALUES(DEFAULT,?,?,?,?,?,?,?,?)");
     $result = $stmt->execute(array($username, $name, $town, $password, $email, $ocupation, $pic));
     return $result;
@@ -9,7 +9,7 @@ function createUser($username, $name, $town, $password, $email, $ocupation, $pic
 
 function getUserByUsername($username)
 {
-    global $conn;
+    //global $conn;
     $stmt = $conn->prepare("SELECT * FROM User WHERE username LIKE ?");
     $stmt->execute(array($username));
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -17,7 +17,7 @@ function getUserByUsername($username)
 
 function searchUserByUsername($username)
 {
-    global $conn;
+    // global $conn;
     $stmt = $conn->prepare("SELECT * FROM User WHERE UPPER(username) LIKE ?");
     $stmt->execute(array($username));
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -25,7 +25,7 @@ function searchUserByUsername($username)
 
 function getuserPhoto($username)
 {
-    global $conn;
+    //global $conn;
     $stmt = $conn->prepare("SELECT photograph FROM User WHERE username LIKE ?");
     $stmt->execute(array($username));
     return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -33,7 +33,7 @@ function getuserPhoto($username)
 
 function getUserByLocal($town)
 {
-    global $conn;
+    // global $conn;
     $stmt = $conn->prepare("SELECT * FROM User WHERE UPPER(localidade) LIKE ?");
     $stmt->execute(array($local));
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -41,16 +41,19 @@ function getUserByLocal($town)
 
 function getUserByWork($ocupation)
 {
-    global $conn;
+    //global $conn;
     $stmt = $conn->prepare("SELECT * FROM User WHERE UPPER(ocupation) LIKE ?");
     $stmt->execute(array($ocupation));
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function login($username, $password)
+function login($username, $password, $conn)
 {
-    global $conn;
-    $stmt = $conn->prepare("SELECT * FROM User WHERE username LIKE ? AND password LIKE ?");
+    //global $conn;
+
+    $stmt = $conn->prepare("SELECT * FROM User username LIKE ? AND password LIKE ?");
+    echo 'prepared!';
+    var_dump($stmt);
     $stmt->execute(array($username, $password));
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($user != false) {
@@ -62,14 +65,14 @@ function login($username, $password)
 
 function updatePassword($username, $password)
 {
-    global $conn;
+    //global $conn;
     $stmt = $conn->prepare("UPDATE User SET password = ? WHERE username LIKE ?");
     return $stmt->execute(array($password, $username));
 }
 
 function updatePhoto($username, $pic)
 {
-    global $conn;
+    // global $conn;
     $conn->beginTransaction();
     $stmt = $conn->prepare("UPDATE User SET photograph = ? WHERE username LIKE ?");
     $stmt->execute(array($pic, $username));
@@ -83,7 +86,7 @@ function updatePhoto($username, $pic)
 
 function editUser($username, $town, $ocupation, $email, $name, $pic)
 {
-    global $conn;
+    // global $conn;
     $conn->beginTransaction();
     $stmt = $conn->prepare("UPDATE Editor SET town = '" . $town . "' , ocupation = '" . $ocupation . "' , email = '" . $email . "' , name = '" . $name . "' , photograph = '" . $pic . "' WHERE username LIKE '" . $username . "'");
     $result = $stmt->execute();
@@ -97,14 +100,14 @@ function editUser($username, $town, $ocupation, $email, $name, $pic)
 
 function sendMessage($sender, $receiver, $title, $body)
 {
-    global $conn;
+    // global $conn;
     $stmt = $conn->prepare("INSERT INTO Message VALUES(DEFAULT,?,?,?,?)");
     return $stmt->execute(array($sender, $receiver, $title, $body));
 }
 
 function getSentMessages($username)
 {
-    global $conn;
+    // global $conn;
     $stmt = $conn->prepare("SELECT Message.idMessage, Message.receiver, Message.title FROM Message WHERE Mesage.sender = ? AND Message.receiver != ? ORDER BY Message.idMessage DESC");
     $stmt->execute(array($username, $username));
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -112,7 +115,7 @@ function getSentMessages($username)
 
 function getReceivedMessages($username)
 {
-    global $conn;
+    //global $conn;
     $stmt = $conn->prepare("SELECT Message.idMessage, Message.title FROM Message WHERE Messagem.sender != ? AND Message.receiver = ? ORDER BY Message.idMessage DESC");
     $stmt->execute(array($username, $username));
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -120,7 +123,7 @@ function getReceivedMessages($username)
 
 function getMessage($id)
 {
-    global $conn;
+    // global $conn;
     $stmt = $conn->prepare("SELECT Message.receiver, Message.sender, Message.title, Message.content FROM Message WHERE Message.idMessage = ?");
     $stmt->execute(array($id));
     return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -128,7 +131,7 @@ function getMessage($id)
 
 function deleteMessage($idMessage)
 {
-    global $conn;
+    // global $conn;
     $stmt = $conn->prepare("DELETE FROM Message WHERE idMessage = ?");
     return $stmt->execute(array($idMessage));
 }

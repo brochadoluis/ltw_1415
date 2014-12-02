@@ -1,23 +1,27 @@
 <?
-include 'users.php';
+require_once 'users.php';
+
 session_start();
+
 if (isset($_SESSION ['permission'])) {
     echo json_encode('Success!');
 } else {
 
     if ((isset($_POST ['username']) && $_POST['username'] != "") && (isset($_POST ['password']) && $_POST['password'] != "")) {
+        echo $_POST['username'];
+        echo $_POST['password'];
         try {
-            echo json_encode('asdasdsadasdsasda');
-            exit;
-            $db = new PDO ('sqlite: ../database/db.db');
+            $db = new PDO ('sqlite:../database/db.db');
+            //var_dump($db);
         } catch (PDOException $e) {
-            echo '{"error":{"code":205,"reason":"' . $e->getMessage() . '"}}';
+            echo json_encode('{"error":{"code":205,"reason":"' . $e->getMessage() . '"}}');
         }
-        if (login($_POST['username'], $_POST['password']) == false) {
+        if (login($_POST['username'], $_POST['password'], $db) == false) {
             echo json_encode('Error!');
-        } else
+        } else {
             echo json_encode('Success!');
-
+            header('Location: ../html/Polls.html');
+        }
     } else
-        $error = "Username or Password is invalid";
+        echo json_encode('Username or Password is invalid');
 }
