@@ -10,7 +10,7 @@ if (isset($_SESSION ['permission'])) {
         echo $_POST['username'];
         echo $_POST['password'];
         try {
-            $db = new PDO ('sqlite:../database/database.db');
+            $db = new PDO ('sqlite:../database/db.db');
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             echo json_encode('{"error":{"code":205,"reason":"' . $e->getMessage() . '"}}');
