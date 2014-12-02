@@ -7,8 +7,6 @@ if (isset($_SESSION ['permission'])) {
 } else {
 
     if ((isset($_POST ['username']) && $_POST['username'] != "") && (isset($_POST ['password']) && $_POST['password'] != "")) {
-        echo $_POST['username'];
-        echo $_POST['password'];
         try {
             $db = new PDO ('sqlite:../database/db.db');
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -18,6 +16,9 @@ if (isset($_SESSION ['permission'])) {
         if (login($_POST['username'], $_POST['password'], $db) == false) {
             echo json_encode('Error!');
         } else {
+            echo '<script language="javascript">';
+            echo 'alert("Success!")'; //not showing an alert box.
+            echo '</script>';
             echo json_encode('Success!');
             header('Location: ../html/Polls.html');
         }
