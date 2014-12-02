@@ -2,7 +2,6 @@
 require_once 'users.php';
 
 session_start();
-
 if (isset($_SESSION ['permission'])) {
     echo json_encode('Success!');
 } else {
@@ -11,8 +10,8 @@ if (isset($_SESSION ['permission'])) {
         echo $_POST['username'];
         echo $_POST['password'];
         try {
-            $db = new PDO ('sqlite:../database/db.db');
-            //var_dump($db);
+            $db = new PDO ('sqlite:../database/database.db');
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             echo json_encode('{"error":{"code":205,"reason":"' . $e->getMessage() . '"}}');
         }

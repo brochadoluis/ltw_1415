@@ -42,7 +42,7 @@ function getUserByLocal($town)
 function getUserByWork($ocupation)
 {
     //global $conn;
-    $stmt = $conn->prepare("SELECT * FROM User WHERE UPPER(ocupation) LIKE ?");
+    $stmt = $conn->prepare("SELECT * FROM User WHERE UPPER(ocupation) = ?");
     $stmt->execute(array($ocupation));
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -50,17 +50,25 @@ function getUserByWork($ocupation)
 function login($username, $password, $conn)
 {
     //global $conn;
-
-    $stmt = $conn->prepare("SELECT * FROM User username LIKE ? AND password LIKE ?");
-    echo 'prepared!';
-    var_dump($stmt);
-    $stmt->execute(array($username, $password));
+    $stmt = $conn->prepare('SELECT idUser FROM User WHERE username LIKE ? AND password LIKE ?;');
+    $stmt->bindValue(':username', $username, PDO::PARAM_STR);
+    $stmt->bindValue(':password', $password, PDO::PARAM_STR);
+    $stmt->execute([$username, $password]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($user != false) {
         return $user;
     } else {
         return false;
     }
+}
+
+function doLogout()
+{
+    // delete the session of the user
+    $_SESSION = array();
+    session_destroy();
+    // return a little feeedback message
+    $this->messages[] = "You have been logged out.";
 }
 
 function updatePassword($username, $password)
