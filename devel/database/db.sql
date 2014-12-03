@@ -1,3 +1,4 @@
+PRAGMA foreign_keys = on;
 /* drop all tables */
 DROP TABLE IF EXISTS User;
 DROP TABLE IF EXISTS Poll;
@@ -7,10 +8,6 @@ DROP TABLE IF EXISTS Link;
 DROP TABLE IF EXISTS Category;
 DROP TABLE IF EXISTS PollCategory;
 DROP TABLE IF EXISTS Message;
-
-
-/*CREATE TYPE permission AS ENUM ('public', 'private');
-CREATE TYPE state AS ENUM ('opened', 'closed');*/
 
 
 /* Users */
@@ -122,120 +119,5 @@ INSERT INTO PollCategory VALUES (1, '1');
 /* id, Sender, Receiver, title, content */
 INSERT INTO Message VALUES (1, 1, 2, 'sem titulo', 'mensagem generica');
 
-
-/* SELECTS, UPDATES AND TRIGGERS 
-
-/* Find user by username 
-SELECT
-  *
-FROM User
-WHERE username = 'filetez';
-
-/* Find poll by category 
-/*SELECT
-  Poll.idPoll,
-  Poll.title,
-FROM PollCategory, Poll, Category
-WHERE PollCategory.idPoll = Poll.idPoll AND PollCategory.name = Category.name AND Category.name LIKE 'Desporto';
-
-/* Find links to poll 
-SELECT
-  Poll.idPoll,
-  Link.homeLink
-FROM Poll, Link, LinkPoll
-WHERE Poll.idPoll = LinkPoll.idPoll AND LinkPoll.href = Link.href AND Poll.idPoll = 1;
-
-/* Messages sent by user X 
-SELECT
-  User.name,
-  User.username,
-  Message.title,
-  Message.content
-FROM User, Message
-WHERE Message.sender = User.username AND Message.receiver != User.username AND User.idUser LIKE 1;
-
-/* Messages received by user Y 
-SELECT
-  User.name,
-  User.username,
-  Message.title,
-  Message.content
-FROM User, Message
-WHERE Message.sender != User.username AND Message.receiver = User.username AND User.idUser LIKE 2;
-
-/* POLL UPDATE */
-
-/* Private Poll 
-UPDATE Poll
-SET pollPermission = 'private'
-WHERE idPoll LIKE '1';
-
-/* Closed Poll 
-UPDATE Poll
-SET pollState = 'closed'
-WHERE idPoll LIKE '1';
-
-/* Update user's password 
-UPDATE User
-SET password = 'passhypersegura'
-WHERE idUser LIKE '2';
-
-/* TRANSACTIONS */
-
-/* login */
-/*SELECT
-  username,
-  password
-FROM User
-WHERE User.username LIKE 'something' AND User.password LIKE 'validpass';
-
-/* Register 
-BEGIN TRANSACTION;
-SELECT
-  username,
-  password
-FROM User
-WHERE User.username LIKE 'something' AND User.password LIKE 'validpass';
-INSERT INTO User
-VALUES (2, 'filetez', 'Joao Filetes', 'Ali acola', '987654321', 'welele@fe.up.pt', 'student', 'path');
-COMMIT;
-
-/* searches 
-SELECT
-  Poll.idPoll
-FROM Poll
-WHERE Poll.title LIKE '%something%';
-SELECT
-  Poll.idPoll
-FROM Poll
-WHERE Poll.data_post LIKE '2014-01-23';
-SELECT
-  User.username
-FROM User
-WHERE User.username LIKE '%user1%';
-
-/* Poll from Category X 
-SELECT
-  Poll.idPoll
-FROM Poll, PollCategory
-WHERE PollCategory.name LIKE 'name' AND Poll.idPoll = PollCategory.idPoll;
-
-/* Post 
-BEGIN TRANSACTION;
-INSERT INTO Poll VALUES (1, title, data, 'path', '1', 'public', 'opened');
-COMMIT;
-
-/* send message 
-BEGIN;
-SELECT
-  username
-FROM User
-WHERE username = 'user1';
-SELECT
-  username
-FROM User
-WHERE username = 'user2';
-INSERT INTO Message VALUES (1, 'user1', 'user2', 'title', 'content');
-COMMIT;*/
 
 
