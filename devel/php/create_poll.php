@@ -1,38 +1,32 @@
 <?php
 session_start();
-$db = new PDO('sqlite:../db/dataBase.db');
+$db = new PDO('sqlite:../database/db.db');
 
 function add_question(){
-	$questions = array(array());
+	$questions = array();
 	$i = 0;
-	$j = 0;
-	while(isset($_POST['Question'.$j])){
-		$questions[$j][0] = $_POST['Question'.$j];
-		while(isset($_POST['q'.$j.'answer'.$i])){
-			$questions[$j][$i+1] = $_POST['q'.$j.'answer'.$i];
+	if(isset($_POST['Question'])){
+		while(isset($_POST['answer'.$i])){
+			$questions[$i] = $_POST['answer'.$i];
 			$i++;
 		}
-		$i = 0;
-		$j++;
 	}
 	return $questions;
 }
 
 function insert($idPoll,$question){
 	global $db;
-	$ins = $db->prepare('INSERT INTO Question (idPoll,qText) Values (?, ?)');
-	$ins->execute(array($idPoll,$question[0]));
-	for ($i = 1; $i < count($question); $i++){
-		$chk = $db->prepare('SELECT * FROM Question WHERE qText = ? AND idPoll = ?');
-		$chk->execute(array($question[0],$idPoll));
+	$ins = $db->prepare('INSERT INTO Question (idQuestion,idPoll,question) Values (?, ?, ?)');
+	$ins->execute(array($idQuestion,$idPoll,$question));
+		$chk = $db->prepare('SELECT * FROM Question WHERE question = ? AND idPoll = ? AND idQuestion = ?');
+		$chk->execute(array($question,$idPoll, $idQuestion));
 		$row = $chk->fetch();
-		$ins = $db->prepare('INSERT INTO Answer (idPoll,idQuestion,aText,votes) Values (?,?,?,0)');
-		$ins->execute(array($idPoll,$row['idQuestion'],$question[$i]));
-	}
+		$ins = $db->prepare('INSERT INTO Answer (idAnswer,idQuestion,answer,votes) Values (?,?,?,0)');
+		$ins->execute(array($idPoll,$row['idQuestion'],$question));
 }
 function check_poll($poll){
 	global $db;
-	$chk = $db->prepare('SELECT * FROM Poll WHERE name = ?');
+	$chk = $db->prepare('SELECT * FROM Poll WHERE title = ?');
 	$chk->execute(array($poll));
 	if(!$chk->fetch())
 		return true;
@@ -40,19 +34,47 @@ function check_poll($poll){
 		return false;
 }
 function create_poll(){
-	if(check_poll($_POST['name'])){
+	if(check_poll($_POST['question'])){
+
+		if (empty($_FILES['fileToUpload']['name'])) {
+			$image = "default.jpg";
+		}
+		else{
+			include_once("upload.php");
+			$image = $_FILES["fileToUpload"]["name"];
+		}
 
 		if(isset($_SESSION['Msg'])){
 			echo $_SESSION['Msg'];
 		}
 		else{
 			global $db;
+			if(isset($_POST['private'])){
+				if(!isset($_SESSION['username']))
+				{
+					$_SESSION['Msg'] = "Must login first to create a private poll";
+					header('Location: ../html/Index.html');
+					die("Must login first to create a poll");
+				}
+				$private = 1;
+			}
+			else{
+				$private = 0;
+			}
+
 			$chk = $db->prepare('SELECT * FROM User WHERE user = ?');
 			$chk->execute(array($_SESSION['username']));
-			$row = $chk->fetch();
+			if(!($row = $chk->fetch())){
+				$idUser = 0;
+			}
+			else{
+				$idUser = $row['idUser'];
+			}
+
 			$questions = add_question();
-			$ins = $db->prepare('INSERT INTO Poll (idUser,name,image) Values (?, ?, ?)');
-			$idUser = $row['idUser'];
+
+			$ins = $db->prepare('INSERT INTO Poll (idUser,name,image, permission, state) Values (?, ?, ?)');
+	
 			$name = $_POST['name'];
 			$ins->execute(array($idUser,$name));
 			echo $image;
