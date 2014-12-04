@@ -5,6 +5,7 @@
     <title>
         Welcome to VotePoll
     </title>
+    <meta charset="UTF-8">
     <link type="text/css" rel="stylesheet" href="../css/style.css"/>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js?ver=1.4.2"></script>
     <script type="text/javascript" src="../javascript/login.js"></script>
@@ -59,33 +60,31 @@
                 <div id="signup">
                     <h2>Sign Up</h2>
 
-                    <form action="users.php" id="signup" method="post" onsubmit="return validateForm(this);">
+                    <form action="../php/register.php" id="signup" method="post">
                         <input id="SnapHostID" name="SnapHostID" type="hidden" value="YX4ES97MDBEB"/>
                         <table border="0" cellpadding="5" cellspacing="0" width="600">
                             <tr>
-                                <td><b>First, Last Name*:</b></td>
+                                <td><b>Full Name*:</b></td>
                                 <td>
-                                    <input id="FirstName" name="FirstName" type="text" maxlength="60"
-                                           style="width:146px; border:1px solid #999999"/>
-                                    <input id="LastName" name="LastName" type="text" maxlength="60"
+                                    <input id="name" name="name" type="text" maxlength="120"
                                            style="width:146px; border:1px solid #999999"/>
                                 </td>
                             </tr>
                             <tr>
 
                                 <td><b>Email address*:</b></td>
-                                <td><input id="FromEmailAddress" name="FromEmailAddress" type="text" maxlength="60"
+                                <td><input id="email" name="email" type="text" maxlength="60"
                                            style="width:300px; border:1px solid #999999"/></td>
                             </tr>
                             <tr>
 
                                 <td><b>Username*:</b></td>
-                                <td><input id="Username" name="Username" type="text" maxlength="60"
+                                <td><input id="username" name="username" type="text" maxlength="60"
                                            style="width:300px; border:1px solid #999999"/></td>
                             </tr>
                             <tr>
                                 <td><b>Password*:</b></td>
-                                <td><input id="Password" name="Password" type="text" maxlength="60"
+                                <td><input id="password" name="password" type="password" maxlength="60"
                                            style="width:146px; border:1px solid #999999"/></td>
                             </tr>
 
