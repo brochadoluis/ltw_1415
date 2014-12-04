@@ -5,6 +5,7 @@
     <title>
         Welcome to VotePoll
     </title>
+    <script type="text/javascript" src="../javascript/addButton.js"></script>
     <link type="text/css" rel="stylesheet" href="../css/user.css" />
 </head>
 
@@ -36,71 +37,42 @@
                 <div class="create_poll_section">
                     <div id="create_poll">
                         <h2>Create a new Poll</h2>
-                         <table border="0" cellpadding="5" cellspacing="0" width="600">
-                        <tr>
-                            <td><b>Insert your question:</b></td>
-                            <td>
-                                <input id="Question" name="Question" type="text" maxlength="60" style="width:300px; border:1px solid #999999" />
-                            </td>
-                        </tr>
-                        <tr>
 
-                            <td><b>Answer number 1:</b>
-                            </td>
-                            <td>
+                        <div><b>Insert your question:</b>
+
+                            <input id="Question" name="Question" type="text" maxlength="60" style="width:300px; border:1px solid #999999" />
+
+                        </div>
+                        <div id="answers">
+                            <div>
+                                <b>Answer number 1:</b>
+
                                 <input id="Answer1" name="Answer1" type="text" maxlength="60" style="width:150px; border:1px solid #999999" />
-                            </td>
-                        </tr>
-                        
-                         <tr>
+                            </div>
 
-                            <td><b>Answer number 2:</b>
-                            </td>
-                            <td>
+                            <div id="ans">
+                                <b>Answer number 2:</b>
+
+
                                 <input id="Answer2" name="Answer2" type="text" maxlength="60" style="width:150px; border:1px solid #999999" />
-                            </td>
-                        </tr>
-                        
-                        
-                         <tr>
 
-                            <td><b>Answer number 3:</b>
-                            </td>
-                            <td>
-                                <input id="Answer3" name="Answer3" type="text" maxlength="60" style="width:150px; border:1px solid #999999" />
-                            </td>
-                        </tr>
-                        
-                         <tr>
+                            </div>
+                            <input type = "button" name ="addAns" id = "addAns0" value = "Add" onclick="addInput()">
+                        </div>
 
-                            <td><b>Answer number 4:</b>
-                            </td>
-                            <td>
-                                <input id="Answer4" name="Answer4" type="text" maxlength="60" style="width:150px; border:1px solid #999999" />
-                            </td>
-                        </tr>
-                        
-                        
-                         <tr>
-
-                            <td><b>Answer number 5:</b>
-                            </td>
-                            <td>
-                                <input id="Answer4" name="Answer5" type="text" maxlength="60" style="width:150px; border:1px solid #999999" />
-                            </td>
-                        </tr>
-                        </table>
+                        <input type="submit" value="Create!"/>
 
                     </div>
-                    <div class="container">
-                        <h1 class="heading">
-                       Your Polls
-                    </h1>
-                    </div>
+
                 </div>
-            </div>
-        </div>
-    </div>
-</body>
+                <div class="container">
+                    <h1 class="heading">
+                     Your Polls
+                 </h1>
+             </div>
+         </div>
+     </div>
 
-</html>
+ </body>
+
+ </html>
