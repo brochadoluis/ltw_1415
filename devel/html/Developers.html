@@ -2,49 +2,48 @@
 <html>
 
 <head>
-    <title>
-        VotePoll · Info
-    </title>
-    <meta charset="UTF-8">
-    <link type="text/css" rel="stylesheet" href="Assets/style.css"/>
+ <title>
+    Welcome to VotePoll
+</title>
+<meta charset="UTF-8">
+<link type="text/css" rel="stylesheet" href="../css/style.css"/>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js?ver=1.4.2"></script>
+<script type="text/javascript" src="../javascript/login.js"></script>
 </head>
 
-<body>
 <body class="page_loggedOut">
-<div class="page_body">
-    <div class="header_loggedOut" role="banner">
-        <div class="navbar container">
-            <div id="loginContainer">
-                <a href="#" id="loginButton"><span>Login</span><em></em></a>
+    <div class="page_body">
+        <div class="header_loggedOut" role="banner">
+            <div class="navbar container">
 
-                <div style="clear:both"></div>
-                <div id="loginBox">
-                    <form id="loginForm">
-                        <fieldset id="body">
-                            <fieldset>
-                                <label for="username">Username</label>
-                                <input type="text" name="username" id="username"/>
+                <ul class="header_navigation" role="navigation">
+                    <li class="header_item">
+                        <a class="header_link" href="Index.html">Home</a>
+                    </li>
+                    <li class="header_item">
+                        <a class="header_link" href="Polls.html">Polls</a>
+                    </li>
+                    <li class="header_item">
+                        <a class="header_link" href="Developers.html">Developers</a>
+                    </li>
+
+                    <li id="loginContainer">
+                        <a href="#" id="loginButton"><span>Login</span><em></em></a>
+
+                        <div style="clear:both"></div>
+                        <div id="loginBox">
+                            <form action="../php/login.php" id="loginForm" method="post">
+                                <fieldset id="body">
+                                    <label for="username">Username</label>
+                                    <input type="text" name="username" id="username"/>
+
+                                    <label for="password">Password</label>
+                                    <input type="password" name="password" id="password"/>
+                                </br></br>
+                                <input type="submit" id="login" value="Sign in"/>
                             </fieldset>
-                            <fieldset>
-                                <label for="password">Password</label>
-                                <input type="password" name="password" id="password"/>
-                            </fieldset>
-                            <input type="submit" id="login" value="Sign in"/>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
-
-
-            <ul class="header_navigation" role="navigation">
-                <li class="header_item">
-                    <a class="header_link" href="/Polls.html">Home</a>
-                </li>
-                <li class="header_item">
-                    <a class="header_link" href="/About.html">Polls</a>
-                </li>
-                <li class="header_item">
-                    <a class="header_link" href="/Developers.html">Developers</a>
+                        </form>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -60,11 +59,11 @@
                     <p class="subheading">
                         A website of pure voting enjoyment by
 
-                    <p>Joana Beleza</p>
+                        <p>Joana Beleza</p>
 
-                    <p>João Correia</p>
+                        <p>João Correia</p>
 
-                    <p>Luís Reis</p>.
+                        <p>Luís Reis</p>.
                     </p>
                 </div>
             </div>
