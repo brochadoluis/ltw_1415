@@ -6,17 +6,15 @@ function createUser($username, $name, $password, $email, $conn)
     return $result;
 }
 
-function getUserByUsername($username)
+function getUserByUsername($username, $conn)
 {
-    //global $conn;
     $stmt = $conn->prepare("SELECT * FROM User WHERE username LIKE ?");
     $stmt->execute(array($username));
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function searchUserByUsername($username)
+function searchUserByUsername($username, $conn)
 {
-    // global $conn;
     $stmt = $conn->prepare("SELECT * FROM User WHERE UPPER(username) LIKE ?");
     $stmt->execute(array($username));
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -61,32 +59,16 @@ function logout()
     echo "You have been logged out.";
 }
 
-function updatePassword($username, $password)
+function updatePassword($username, $password, $conn)
 {
-    //global $conn;
-    $stmt = $conn->prepare("UPDATE User SET password = ? WHERE username LIKE ?");
+    $stmt = $conn->prepare("UPDATE User SET password = '" . $password . "' WHERE username LIKE '" . $username . "'");
     return $stmt->execute(array($password, $username));
 }
 
-function updatePhoto($username, $pic)
+function editUser($username, $email, $name, $conn)
 {
-    // global $conn;
     $conn->beginTransaction();
-    $stmt = $conn->prepare("UPDATE User SET photograph = ? WHERE username LIKE ?");
-    $stmt->execute(array($pic, $username));
-    $result = $stmt->fetch();
-    if ($result == false) {
-        $conn->rollBack();
-        return false;
-    }
-    return true;
-}
-
-function editUser($username, $town, $occupation, $email, $name, $pic)
-{
-    // global $conn;
-    $conn->beginTransaction();
-    $stmt = $conn->prepare("UPDATE Editor SET town = '" . $town . "' , ocupation = '" . $occupation . "' , email = '" . $email . "' , name = '" . $name . "' , photograph = '" . $pic . "' WHERE username LIKE '" . $username . "'");
+    $stmt = $conn->prepare("UPDATE User SET  email = '" . $email . "' , nome = '" . $name . "' WHERE username LIKE '" . $username . "'");
     $result = $stmt->execute();
     if ($result == false) {
         $conn->rollBack();
@@ -96,40 +78,35 @@ function editUser($username, $town, $occupation, $email, $name, $pic)
     return true;
 }
 
-function sendMessage($sender, $receiver, $title, $body)
+function sendMessage($sender, $receiver, $title, $body, $conn)
 {
-    // global $conn;
-    $stmt = $conn->prepare("INSERT INTO Message VALUES(DEFAULT,?,?,?,?)");
+    $stmt = $conn->prepare("INSERT INTO Message(sender, receiver, title, content) VALUES('$sender','$receiver','$title','$body')");
     return $stmt->execute(array($sender, $receiver, $title, $body));
 }
 
-function getSentMessages($username)
+function getSentMessages($username, $conn)
 {
-    // global $conn;
     $stmt = $conn->prepare("SELECT Message.idMessage, Message.receiver, Message.title FROM Message WHERE Mesage.sender = ? AND Message.receiver != ? ORDER BY Message.idMessage DESC");
     $stmt->execute(array($username, $username));
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function getReceivedMessages($username)
+function getReceivedMessages($username, $conn)
 {
-    //global $conn;
     $stmt = $conn->prepare("SELECT Message.idMessage, Message.title FROM Message WHERE Messagem.sender != ? AND Message.receiver = ? ORDER BY Message.idMessage DESC");
     $stmt->execute(array($username, $username));
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function getMessage($id)
+function getMessage($id, $conn)
 {
-    // global $conn;
     $stmt = $conn->prepare("SELECT Message.receiver, Message.sender, Message.title, Message.content FROM Message WHERE Message.idMessage = ?");
     $stmt->execute(array($id));
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-function deleteMessage($idMessage)
+function deleteMessage($idMessage, $conn)
 {
-    // global $conn;
     $stmt = $conn->prepare("DELETE FROM Message WHERE idMessage = ?");
     return $stmt->execute(array($idMessage));
 }
