@@ -1,9 +1,11 @@
 PRAGMA foreign_keys = on;
+
 /* drop all tables */
 DROP TABLE IF EXISTS User;
 DROP TABLE IF EXISTS Poll;
 DROP TABLE IF EXISTS Question;
 DROP TABLE IF EXISTS Answer;
+DROP TABLE IF EXISTS Vote;
 DROP TABLE IF EXISTS Link;
 DROP TABLE IF EXISTS Category;
 DROP TABLE IF EXISTS PollCategory;
@@ -15,11 +17,8 @@ CREATE TABLE IF NOT EXISTS User (
   idUser    INTEGER PRIMARY KEY,
   username  VARCHAR(16)     NOT NULL,
   name      VARCHAR         NOT NULL,
-  town      VARCHAR         NOT NULL,
   password  VARCHAR         NOT NULL,
   email     VARCHAR UNIQUE  NOT NULL,
-  ocupation VARCHAR         NOT NULL,
-  fotograph VARCHAR,
   CHECK (length(password) > 8),
   CHECK (length(username) > 6)
 );
@@ -29,7 +28,7 @@ CREATE TABLE IF NOT EXISTS Poll (
   idPoll         INTEGER PRIMARY KEY,
   title          VARCHAR(85) NOT NULL,
   data_post      DATE DEFAULT CURRENT_DATE,
-  fotograph      VARCHAR     NOT NULL,
+  pic VARCHAR NOT NULL,
   idCreator      INTEGER REFERENCES User ON DELETE CASCADE,
   pollPermission VARCHAR CHECK (pollPermission LIKE 'public' OR pollPermission LIKE 'private'),
   pollState      VARCHAR CHECK (pollState LIKE 'opened' OR pollState LIKE 'closed')
@@ -38,14 +37,24 @@ CREATE TABLE IF NOT EXISTS Poll (
 /* Questions */
 CREATE TABLE IF NOT EXISTS Question (
   idQuestion INTEGER PRIMARY KEY,
-  idPoll     INTEGER REFERENCES Poll ON DELETE CASCADE
+  idPoll   INTEGER REFERENCES Poll ON DELETE CASCADE,
+  question VARCHAR
 );
 
 /* Answers */
 CREATE TABLE IF NOT EXISTS Answer (
   idAnswer     INTEGER PRIMARY KEY,
+  idQuestion INTEGER REFERENCES Question ON DELETE CASCADE,
+  answer     VARCHAR
+);
+
+/* Votes */
+CREATE TABLE IF NOT EXISTS Vote (
+  idQuestion   INTEGER REFERENCES Question ON DELETE CASCADE, /* para verificar que um user só tem 1 voto por pergunta vê-se pela relacao idAnswer-idRespondent */
   idRespondent INTEGER REFERENCES User ON DELETE CASCADE,
-  idQuestion   INTEGER REFERENCES Question ON DELETE CASCADE
+  idAnswer     INTEGER REFERENCES Answer ON DELETE CASCADE,
+  vote         INTEGER NOT NULL,
+  CHECK (vote = 1)
 );
 
 /* Links */
@@ -89,20 +98,25 @@ CREATE TABLE IF NOT EXISTS Message (
 /* POPULATING DB */
 
 
-/* id, username, name, town, password, email, ocupation, photograph */
+/* id, username, name, password, email, ,  */
 INSERT INTO User
-VALUES (1, 'luisreis', 'Luis Reis', 'Porto', 'projetoltw', 'luisreis@fe.up.pt', 'student', 'path');
+VALUES (1, 'luisreis', 'Luis Reis', 'projetoltw', 'luisreis@fe.up.pt');
 INSERT INTO User
-VALUES (2, 'joaocardoso', 'Joao Cardoso', 'Porto', 'projetoltw', 'joaocardoso@fe.up.pt', 'student', 'path');
+VALUES (2, 'joaocardoso', 'Joao Cardoso', 'projetoltw', 'joaocardoso@fe.up.pt');
 
-/* id, title, data_post, photograph, idCreator, pollPermission, pollState */
+/* id, title, data_post, pic, idCreator, pollPermission, pollState */
 INSERT INTO Poll VALUES (1, 'First Poll', '26-11-2014', 'path', 1, 'public', 'opened');
 
 /* id, Poll */
-INSERT INTO Question VALUES (1, 1);
+INSERT INTO Question VALUES (1, 1, 'Quem gosta deste site?');
 
-/* id, Respondant, Question */
-INSERT INTO Answer VALUES (1, 1, 1);
+/* id, Question, Answer */
+INSERT INTO Answer VALUES (1, 1, 'Eu');
+INSERT INTO Answer VALUES (2, 1, 'Eu Nao');
+
+/* idQuestion, idRespondant, idAnswer, vote */
+INSERT INTO Vote VALUES (1, 1, 1, 1);
+INSERT INTO Vote VALUES (1, 2, 2, 1);
 
 /* href, link */
 INSERT INTO Link VALUES ('http://abola.pt/nnh/ver.aspx?id=482248', 'abola.pt');

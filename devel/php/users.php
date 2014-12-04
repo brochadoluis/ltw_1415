@@ -1,9 +1,15 @@
 <?php
-function createUser($username, $name, $town, $password, $email, $ocupation, $pic)
+function createUser($username, $name, $password, $email, $conn)
 {
-    //global $conn;
-    $stmt = $conn->prepare("INSERT INTO Editor VALUES(DEFAULT,?,?,?,?,?,?,?,?)");
-    $result = $stmt->execute(array($username, $name, $town, $password, $email, $ocupation, $pic));
+    $stmt = $conn->prepare("INSERT INTO User (username, name, password, email) VALUES('$username','$name','$password','$email')");
+//    $stmt->bindValue(':username', $username, PDO::PARAM_STR);
+//    $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+//    $stmt->bindValue(':town', $town, PDO::PARAM_STR);
+//    $stmt->bindValue(':password', $password, PDO::PARAM_STR);
+//    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+//    $stmt->bindValue(':occupation', $occupation, PDO::PARAM_STR);
+//    $stmt->bindValue(':pic', $pic, PDO::PARAM_STR);
+    $result = $stmt->execute();
     return $result;
 }
 
@@ -34,23 +40,22 @@ function getuserPhoto($username)
 function getUserByLocal($town)
 {
     // global $conn;
-    $stmt = $conn->prepare("SELECT * FROM User WHERE UPPER(localidade) LIKE ?");
+    $stmt = $conn->prepare("SELECT * FROM User WHERE UPPER(town) LIKE ?");
     $stmt->execute(array($local));
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function getUserByWork($ocupation)
+function getUserByWork($occupation)
 {
     //global $conn;
-    $stmt = $conn->prepare("SELECT * FROM User WHERE UPPER(ocupation) = ?");
-    $stmt->execute(array($ocupation));
+    $stmt = $conn->prepare("SELECT * FROM User WHERE UPPER(occupation) = ?");
+    $stmt->execute(array($occupation));
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function login($username, $password, $conn)
 {
-    //global $conn;
-    $stmt = $conn->prepare('SELECT idUser FROM User WHERE username LIKE ? AND password LIKE ?;');
+    $stmt = $conn->prepare('SELECT * FROM User WHERE username LIKE ? AND password LIKE ?;');
     $stmt->bindValue(':username', $username, PDO::PARAM_STR);
     $stmt->bindValue(':password', $password, PDO::PARAM_STR);
     $stmt->execute([$username, $password]);
@@ -62,13 +67,29 @@ function login($username, $password, $conn)
     }
 }
 
-function doLogout()
+function checkIfUserExists($username, $email, $conn)
+{
+    $stmtUsername = $conn->prepare('SELECT username FROM User WHERE username LIKE ?;');
+    $stmtEmail = $conn->prepare('SELECT email FROM User WHERE email LIKE ?;');
+    $stmtUsername->bindValue(':username', $username, PDO::PARAM_STR);
+    $stmtEmail->bindValue(':email', $email, PDO::PARAM_STR);
+    $stmtUsername->execute([$username]);
+    $stmtEmail->execute([$email]);
+    $resultName = $stmtUsername->fetch(PDO::FETCH_ASSOC);
+    $resultEmail = $stmtEmail->fetch(PDO::FETCH_ASSOC);
+    if ($resultName == true || $resultEmail == true)
+        return true;
+    else
+        return false;
+}
+
+function logout()
 {
     // delete the session of the user
     $_SESSION = array();
     session_destroy();
     // return a little feeedback message
-    $this->messages[] = "You have been logged out.";
+    echo "You have been logged out.";
 }
 
 function updatePassword($username, $password)
@@ -92,11 +113,11 @@ function updatePhoto($username, $pic)
     return true;
 }
 
-function editUser($username, $town, $ocupation, $email, $name, $pic)
+function editUser($username, $town, $occupation, $email, $name, $pic)
 {
     // global $conn;
     $conn->beginTransaction();
-    $stmt = $conn->prepare("UPDATE Editor SET town = '" . $town . "' , ocupation = '" . $ocupation . "' , email = '" . $email . "' , name = '" . $name . "' , photograph = '" . $pic . "' WHERE username LIKE '" . $username . "'");
+    $stmt = $conn->prepare("UPDATE Editor SET town = '" . $town . "' , ocupation = '" . $occupation . "' , email = '" . $email . "' , name = '" . $name . "' , photograph = '" . $pic . "' WHERE username LIKE '" . $username . "'");
     $result = $stmt->execute();
     if ($result == false) {
         $conn->rollBack();
