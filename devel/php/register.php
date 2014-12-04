@@ -1,5 +1,4 @@
 <?php
-
 require_once 'users.php';
 /**
  * Created by IntelliJ IDEA.
@@ -20,7 +19,6 @@ if (isset($_SESSION['permission'])) {
         $password = $_POST['password'];
         $name = $_POST['name'];
         $email = $_POST['email'];
-        echo json_encode(' Register!');
         try {
             $db = new PDO ('sqlite:../database/db.db');
         } catch (PDOException $e) {
@@ -28,14 +26,10 @@ if (isset($_SESSION['permission'])) {
         }
         if (checkIfUserExists($username, $email, $db) == false) {
             createUser($username, $name, $password, $email, $db);
-
-            echo json_encode('Succefull Register!');
             login($username, $password, $db);
-            //header('Location: ../html/User.html');
-
+            header('Location: ../html/User.html');
         } else {
-            echo json_encode('User already registered, please log in or register with a differente username and/or email!');
-            //header('Location: ../html/Index.html');
+            header('Location: ../html/Index.html');
         }
     }
 }

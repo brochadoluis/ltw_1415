@@ -15,7 +15,7 @@ function loginSubmit() {
             alert('hello');
             alert('Inside success function!');
             alert('bye');// show response from the php script
-            window.location.href = "../html/Polls.html";
+            //window.location.href = "../html/Polls.html";
         }
     });
 }
