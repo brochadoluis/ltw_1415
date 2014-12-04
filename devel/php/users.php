@@ -2,13 +2,6 @@
 function createUser($username, $name, $password, $email, $conn)
 {
     $stmt = $conn->prepare("INSERT INTO User (username, name, password, email) VALUES('$username','$name','$password','$email')");
-//    $stmt->bindValue(':username', $username, PDO::PARAM_STR);
-//    $stmt->bindValue(':name', $name, PDO::PARAM_STR);
-//    $stmt->bindValue(':town', $town, PDO::PARAM_STR);
-//    $stmt->bindValue(':password', $password, PDO::PARAM_STR);
-//    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
-//    $stmt->bindValue(':occupation', $occupation, PDO::PARAM_STR);
-//    $stmt->bindValue(':pic', $pic, PDO::PARAM_STR);
     $result = $stmt->execute();
     return $result;
 }
@@ -26,30 +19,6 @@ function searchUserByUsername($username)
     // global $conn;
     $stmt = $conn->prepare("SELECT * FROM User WHERE UPPER(username) LIKE ?");
     $stmt->execute(array($username));
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
-function getuserPhoto($username)
-{
-    //global $conn;
-    $stmt = $conn->prepare("SELECT photograph FROM User WHERE username LIKE ?");
-    $stmt->execute(array($username));
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-}
-
-function getUserByLocal($town)
-{
-    // global $conn;
-    $stmt = $conn->prepare("SELECT * FROM User WHERE UPPER(town) LIKE ?");
-    $stmt->execute(array($local));
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
-function getUserByWork($occupation)
-{
-    //global $conn;
-    $stmt = $conn->prepare("SELECT * FROM User WHERE UPPER(occupation) = ?");
-    $stmt->execute(array($occupation));
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 

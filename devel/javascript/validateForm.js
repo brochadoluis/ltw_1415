@@ -1,35 +1,30 @@
 /**
  * Created by Luís on 01/12/2014.
  */
-function ValidateForm(frm) {
-    if (frm.FirstName.value == "") {
-        alert('First Name is required.');
-        frm.FirstName.focus();
+function validateForm(frm) {
+    if (frm.name.value == "") {
+        alert('Name is required.');
+        frm.name.focus();
         return false;
     }
-    if (frm.LastName.value == "") {
-        alert('Last Name is required.');
-        frm.LastName.focus();
-        return false;
-    }
-    if (frm.FromEmailAddress.value == "") {
+    if (frm.email.value == "") {
         alert('Email address is required.');
-        frm.FromEmailAddress.focus();
+        frm.email.focus();
         return false;
     }
-    if (frm.FromEmailAddress.value.indexOf("@") < 1 || frm.FromEmailAddress.value.indexOf(".") < 1) {
+    if (frm.email.value.indexOf("@") < 1 || frm.email.value.indexOf(".") < 1) {
         alert('Please enter a valid email address.');
-        frm.FromEmailAddress.focus();
+        frm.email.focus();
         return false;
     }
-    if (frm.Username.value == "") {
+    if (frm.username.value == "") {
         alert('Username is required.');
-        frm.Username.focus();
+        frm.username.focus();
         return false;
     }
-    if (frm.Password.value == "") {
+    if (frm.password.value == "") {
         alert('Password is required.');
-        frm.Password.focus();
+        frm.password.focus();
         return false;
     }
     if (frm.CaptchaCode.value == "") {
