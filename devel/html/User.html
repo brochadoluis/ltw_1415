@@ -38,24 +38,30 @@
                 <div class="create_poll_section">
                     <div id="create_poll">
                         <h2>Create a new Poll</h2>
+                       
+                        <form method="post" action="../php/upload.php" enctype="multipart/form-data">
+                              <input type="file" name="pic" id="pic" accept="image/*">
+                              <input type="submit">
+                          </form>
 
-                        <div><b>Insert your question:</b>
 
-                            <input id="question" name="Question" type="text" maxlength="60" style="width:300px; border:1px solid #999999" />
+                          <div><b>Insert your question:</b>
+
+                            <input id="question" name="question" type="text" maxlength="60" style="width:300px; border:1px solid #999999" />
 
                         </div>
                         <div id="answers">
                             <div>
                                 <b>Answer number 1:</b>
 
-                                <input id="answer1" class="answer_type" name="Answer1" type="text" maxlength="60" style="width:150px; border:1px solid #999999" />
+                                <input id="answer0" class="answer_type" name="Answer1" type="text" maxlength="60" style="width:150px; border:1px solid #999999" />
                             </div>
 
                             <div id="ans">
                                 <b>Answer number 2:</b>
 
 
-                                <input id="answer2" class="answer_type" name="Answer2" type="text" maxlength="60" style="width:150px; border:1px solid #999999" />
+                                <input id="answer1" class="answer_type" name="Answer2" type="text" maxlength="60" style="width:150px; border:1px solid #999999" />
 
                             </div>
                             <input type="button" name="addAns" id="addAns0" value="Add" onclick="addInput()">
@@ -63,17 +69,18 @@
 
                         <input type="submit" value="Create!" />
 
-
-                    </div>
-
-                    <h1 class="heading">
-                        Your Polls
-                    </h1>
+                    
 
                 </div>
+
+                <h1 class="heading">
+                    Your Polls
+                </h1>
+
             </div>
         </div>
     </div>
+</div>
 </body>
 
 </html>
