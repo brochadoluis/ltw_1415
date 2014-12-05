@@ -20,7 +20,7 @@ if (isset($_SESSION ['permission'])) {
             echo 'alert("Success!")'; //not showing an alert box.
             echo '</script>';
             echo json_encode('Success!');
-            header('Location: ../html/User.html');
+            header('Location: ../html/User.php');
         }
     } else
         echo json_encode('Username or Password is invalid');
