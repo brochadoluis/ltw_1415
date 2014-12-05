@@ -10,8 +10,7 @@
     <meta charset="UTF-8">
     <link type="text/css" rel="stylesheet" href="../css/pollStyle.css" />
 	
-	
-    /*Poll Pie Chart*/
+
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
         google.load("visualization", "1", {
@@ -81,7 +80,7 @@
                 <div class="create_poll_section">
                  
                     <h1 class="heading">
-                        Your Polls
+                        Poll
                     </h1>
 					
 					 <div id="piechart" style="width: 900px; height: 500px;"></div>
