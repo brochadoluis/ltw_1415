@@ -1,6 +1,5 @@
 <?
 require_once 'users.php';
-
 session_start();
 if (isset($_SESSION ['permission'])) {
     echo json_encode('Success!');
@@ -20,7 +19,7 @@ if (isset($_SESSION ['permission'])) {
             echo 'alert("Success!")'; //not showing an alert box.
             echo '</script>';
             echo json_encode('Success!');
-            header('Location: ../html/User.php');
+            header('Location: ../html/User.html');
         }
     } else
         echo json_encode('Username or Password is invalid');

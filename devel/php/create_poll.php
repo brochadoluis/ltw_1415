@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 $db = new PDO('sqlite:../database/db.db');
 
 function add_question(){
@@ -14,16 +14,29 @@ function add_question(){
 	return $questions;
 }
 
-function insert($idPoll,$question){
+function insertQuestionAnswer($idPoll, $question)
+{
 	global $db;
-	$ins = $db->prepare('INSERT INTO Question (idQuestion,idPoll,question) Values (?, ?, ?)');
-	$ins->execute(array($idQuestion,$idPoll,$question));
-		$chk = $db->prepare('SELECT * FROM Question WHERE question = ? AND idPoll = ? AND idQuestion = ?');
-		$chk->execute(array($question,$idPoll, $idQuestion));
-		$row = $chk->fetch();
-		$ins = $db->prepare('INSERT INTO Answer (idAnswer,idQuestion,answer,votes) Values (?,?,?,0)');
-		$ins->execute(array($idPoll,$row['idQuestion'],$question));
+    $ins = $db->prepare("INSERT INTO Question (idPoll,question) Values ('$idPoll', '$question')");
+    $ins->execute();
+    $chk = $db->prepare('SELECT * FROM Question WHERE question = ? AND idPoll = ?');
+    $chk->execute(array($question, $idPoll));
+    $row = $chk->fetch();
+    $idQuestion = $row['idQuestion'];
 }
+
+function insertAnswer($idPoll, $question, $answer)
+{
+    global $db;
+    getIdQuestion($idPoll, $question);
+    $chk = $db->prepare('SELECT * FROM Question WHERE question = ? AND idPoll = ?');
+    $chk->execute(array($question, $idPoll));
+    $row = $chk->fetch();
+    $idQuestion = $row['idQuestion'];
+    $ins = $db->prepare("INSERT INTO Answer (idAnswer,idQuestion,answer) Values ('$idQuestion','$answer'");
+    $ins->execute();
+}
+
 function check_poll($poll){
 	global $db;
 	$chk = $db->prepare('SELECT * FROM Poll WHERE title = ?');
@@ -74,8 +87,8 @@ function create_poll(){
 			$questions = add_question();
 
 			$ins = $db->prepare('INSERT INTO Poll (idUser,name,image, permission, state) Values (?, ?, ?)');
-	
-			$name = $_POST['name'];
+
+            $name = $_POST['name'];
 			$ins->execute(array($idUser,$name));
 			echo $image;
 			$chk = $db->prepare('SELECT * FROM Poll WHERE name = ?');

@@ -45,8 +45,7 @@ CREATE TABLE IF NOT EXISTS Question (
 CREATE TABLE IF NOT EXISTS Answer (
   idAnswer     INTEGER PRIMARY KEY,
   idQuestion INTEGER REFERENCES Question ON DELETE CASCADE,
-  answer     VARCHAR,
-  Votes      INTEGER
+  answer VARCHAR
 );
 
 /* Votes */
