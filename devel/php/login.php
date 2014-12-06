@@ -15,10 +15,8 @@ if (isset($_SESSION ['permission'])) {
         if (login($_POST['username'], $_POST['password'], $db) == false) {
             echo json_encode('Error!');
         } else {
-            echo '<script language="javascript">';
-            echo 'alert("Success!")'; //not showing an alert box.
-            echo '</script>';
             echo json_encode('Success!');
+            $_SESSION['username'] = $username;
             header('Location: ../html/User.html');
         }
     } else

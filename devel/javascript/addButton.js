@@ -6,8 +6,8 @@ function addInput() {
     document.getElementById('ans').appendChild(newdiv);
     counter++;
 }
-function delInput() {
-    var sel = "answer" + counter;
-    $.("sel").hide();
-    counter--;
-}
+//function delInput() {
+//    var sel = "answer" + counter;
+//    $.("sel").hide();
+//    counter--;
+//}

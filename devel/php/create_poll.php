@@ -1,7 +1,8 @@
 <?php
 echo "string";
-//session_start();
+session_start();
 $db = new PDO('sqlite:../database/db.db');
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 function add_question(){
 	$questions = array();
@@ -76,8 +77,9 @@ function create_poll(){
 				$private = 0;
 			}
 
-			$chk = $db->prepare('SELECT * FROM User WHERE user = ?');
-			$chk->execute(array($_SESSION['username']));
+            $username = $_SESSION['username'];
+            $chk = $db->prepare("SELECT * FROM User WHERE username = '$username'");
+            $chk->execute();
 			if(!($row = $chk->fetch())){
 				$idUser = 0;
 			}
@@ -87,9 +89,9 @@ function create_poll(){
 
 			$questions = add_question();
 
-			$ins = $db->prepare('INSERT INTO Poll (idUser,name,image, permission, state) Values (?, ?, ?)');
+            $ins = $db->prepare('INSERT INTO Poll (idCreator, title, pic, pollPermission, pollState) Values (?, ?, ?, ?, ?)');
 
-            $name = $_POST['name'];
+            $name = $_POST['title'];
 			$ins->execute(array($idUser,$name));
 			echo $image;
 			$chk = $db->prepare('SELECT * FROM Poll WHERE name = ?');
@@ -106,6 +108,6 @@ function create_poll(){
 	}
 }
 create_poll();
-return true;
+//return true;
 //header('Location: main_page_body.php');
 ?>
