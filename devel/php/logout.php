@@ -8,4 +8,4 @@ session_start();
  * Time: 04:09
  */
 logout();
-header('Location: ../html/Index.html');
+header('Location: ../html/index.html');

@@ -49,7 +49,7 @@
                             <input type="submit">
                         </form>
                     </br>
-                    <form method="post" onsubmit="showPoll()" >
+                    <form method="post" action="../php/create_poll.php" >
                         <div><b>Insert polls title:</b></br>
                             <input id="title" name="title" type="text" maxlength="60"
                             style="width:300px; border:1px solid #999999"/>
@@ -91,7 +91,7 @@
                         type: "POST",
                         url: "../php/create_poll.php",
                         dataType: 'json',
-                        success: function (formData) {
+                        success: function () {
                           alert('Poll created!');
                       }
                   });

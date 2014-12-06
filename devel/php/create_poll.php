@@ -1,4 +1,5 @@
 <?php
+echo "string";
 //session_start();
 $db = new PDO('sqlite:../database/db.db');
 
@@ -105,5 +106,6 @@ function create_poll(){
 	}
 }
 create_poll();
+return true;
 //header('Location: main_page_body.php');
 ?>
