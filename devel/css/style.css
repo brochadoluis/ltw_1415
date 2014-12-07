@@ -253,6 +253,14 @@ fieldset#body {
     cursor: pointer;
 }
 
+#errMsg {
+    margin-top: 10px;
+    margin-right: 2px;
+    font-size: 12px;
+    float: right;
+    color: red;
+}
+
 #signup {
     float: right;
 }

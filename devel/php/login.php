@@ -14,11 +14,16 @@ if (isset($_SESSION ['permission'])) {
         }
         if (login($_POST['username'], $_POST['password'], $db) == false) {
             echo json_encode('Error!');
+            $_SESSION['errMsg'] = "Invalid username or password";
+            header ( 'Location: ' . $_SERVER ['HTTP_REFERER'] );
+
         } else {
             echo json_encode('Success!');
             $_SESSION['username'] = $username;
             header('Location: ../html/User.html');
         }
-    } else
-        echo json_encode('Username or Password is invalid');
+    } else {
+        $_SESSION['errMsg'] = "Invalid username or password";
+    }
+        
 }
