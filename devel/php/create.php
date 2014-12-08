@@ -59,7 +59,7 @@ if(!empty($_POST['answer2'])) {
   $i++;
   $answer = 'answer'.$i;
 }
-header('Location: ../html/Poll.html');
+    header('Location: ../html/Poll.php');
 //header('Location: ' . $_SERVER ['HTTP_REFERER'] );
 }
 else {
