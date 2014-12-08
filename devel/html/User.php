@@ -12,6 +12,7 @@
     <meta charset="UTF-8">
     <script type="text/javascript" src="../javascript/addButton.js"></script>
     <script type="text/javascript" src="../javascript/image.js"></script>
+    <script type="text/javascript" src="../javascript/Showpoll.js"></script>
     <link type="text/css" rel="stylesheet" href="../css/user.css"/>
 </head>
 
@@ -21,7 +22,7 @@
             <div class="navbar container">
                 <ul class="header_navigation" role="navigation">
                     <li class="header_item">
-                        <a class="header_link" href="User.html">Home</a>
+                        <a class="header_link" href="User.php">Home</a>
                     </li>
                     <li class="header_item">
                         <a class="header_link" href="Polls.html">Polls</a>
@@ -97,6 +98,10 @@
         <h1 class="heading">
             Your Polls
         </h1>
+
+        <div id="yourPolls">
+            
+        </div>
 
     </div>
 </div>

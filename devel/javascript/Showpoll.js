@@ -1,17 +1,17 @@
 $().ready(getPolls);
 
-function getPolls() {
-    $.getJSON("../php/createdPolls.php", poll);
+function getPolls () {
+	$.getJSON("../php/createdPolls.php", poll);
 }
 
-function poll(data) {
-    $.each(data, showPoll);
+function poll (data) {
+	$.each(data, showPoll);
 }
 
-function showPoll(key, value) {
-    console.log(value);
-
-    var poll = $(document.createElement('div')).attr("class", 'poll-card');
-    poll.append('<h1>' + value['title'] + '</h1><div id="poll' + value['idQuestion'] + '"><label>Question: </label>' + ' ' + value['question'] + '</div><br><div class="poll-button"><div class="buttons"><form><button class="poll-button poll-button-new" onclick="showStats(this ,' + value['idQuestion'] + ');return false;" id="showStats' + value['idQuestion'] + '">Show Stats</button><button class="poll-button poll-button-new" onclick="editPoll(this ,' + value['idPoll'] + ');return false;">Edit Poll</button><button class="poll-button poll-button-new" onclick="deletePoll(this ,' + value['idPoll'] + ');return false;">Delete Poll</button><form></div>');
-    poll.appendTo("#yourPolls");
+function showPoll(key,value) {
+	console.log(value);
+	
+	var poll = $(document.createElement('div')).attr("class", 'poll-card');
+	poll.append('<h1>' + value['title'] + '</h1><div id="poll'+ value['idQuestion'] + '"><label>Question: </label>' + ' ' + value['question'] + '</div><br><div class="poll-button"><div class="buttons"><form><button class="poll-button poll-button-new" onclick="showStats(this ,' + value['idQuestion'] + ');return false;" id="showStats' + value['idQuestion'] + '">Show Stats</button><button class="poll-button poll-button-new" onclick="editPoll(this ,' + value['idPoll'] + ');return false;">Edit Poll</button><button class="poll-button poll-button-new" onclick="deletePoll(this ,' + value['idPoll'] + ');return false;">Delete Poll</button><form></div>');
+	poll.appendTo("#yourPolls");
 }

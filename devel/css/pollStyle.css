@@ -87,6 +87,7 @@ h1 {
     letter-spacing: -1px;
 }
 
+
 /* Logout Container (default to float:right) */
 #logoutContainer {
     position: relative;
@@ -111,16 +112,17 @@ h1 {
 
 /* Logout Button Text */
 #logoutButton span {
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-    padding: 7px 15px 9px 10px;
-    display: block;
+color: white;
+font-size: 14px;
+font-weight: bold;
+padding: 7px 15px 9px 10px;
+display: block;
 }
 
 #logoutButton:hover {
     background: #4682B4;
 }
+
 
 /* If the Login Button has been clicked */
 #logoutButton.active {
@@ -140,8 +142,8 @@ h1 {
     bottom: -1px;
 }
 
-#create_poll {
-    float: right;
+#create_poll{
+     float: right;
 }
 
 #create_poll h2 {
@@ -162,69 +164,67 @@ i {
 }
 
 .poll-card {
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
-    padding: 1.5%;
-    width: 50%;
-    background-color: #F7F7F7;
-    margin: auto auto 1% auto;
-    overflow: hidden;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  padding: 1.5%;
+  width: 50%;
+  background-color: #F7F7F7;
+  margin: auto auto 1% auto;
+  overflow: hidden;
 }
 
 .poll-card h1 {
     margin-top: -2%;
-    font-weight: 100%;
-    text-align: center;
-    font-size: 2em;
+  font-weight: 100%;
+  text-align: center;
+  font-size: 2em;
 }
 
 .poll-card a:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 .poll-card input[type=submit] {
 
-    width: 50%;
-    display: block;
-    margin: auto;
+  width: 50%;
+  display: block;
+  margin: auto;
 }
 
 .poll-card input[type=button] {
-    width: 30%;
-    display: inline;
+  width: 30%;
+  display: inline;
 }
 
 .poll-button {
     text-align: center;
-    margin-right: 1%;
+  margin-right: 1%;
     font-size: 14px;
-    font-family: 'Arial', sans-serif;
-    font-weight: 700;
-    height: 36px;
-    padding: 0 8px;
+  font-family: 'Arial', sans-serif;
+  font-weight: 700;
+  height: 36px;
+  padding: 0 8px;
 }
 
 .poll-submit {
-    border: 0px;
-    color: #fff;
-    text-shadow: 0 1px rgba(0, 0, 0, 0.1);
-    background-color: #4d90fe;
+  border: 0px;
+  color: #fff;
+  text-shadow: 0 1px rgba(0,0,0,0.1); 
+  background-color: #4d90fe;
 }
-
 .poll-submit:hover {
-    border: 0px;
-    text-shadow: 0 1px rgba(0, 0, 0, 0.3);
-    background-color: #357ae8;
+  border: 0px;
+  text-shadow: 0 1px rgba(0,0,0,0.3);
+  background-color: #357ae8;
 }
 
 .poll-button-new {
-    border: 0px;
-    color: #fff;
-    text-shadow: 0 1px rgba(0, 0, 0, 0.1);
-    background-color: #4d90fe;
+  border: 0px;
+  color: #fff;
+  text-shadow: 0 1px rgba(0,0,0,0.1); 
+  background-color: #4d90fe;
 }
-
 .poll-button-new:hover {
-    border: 0px;
-    text-shadow: 0 1px rgba(0, 0, 0, 0.3);
-    background-color: #357ae8;
+  border: 0px;
+  text-shadow: 0 1px rgba(0,0,0,0.3);
+  background-color: #357ae8;
 }
