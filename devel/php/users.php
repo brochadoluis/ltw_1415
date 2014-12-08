@@ -1,9 +1,12 @@
 <?php
 function createUser($username, $name, $password, $email, $conn)
 {
-    $stmt = $conn->prepare("INSERT INTO User (username, name, password, email) VALUES('$username','$name','$password','$email')");
-    $result = $stmt->execute();
-    return $result;
+    $stmt = $conn->prepare("INSERT INTO User (username, name, password, email) VALUES(:user,:name,:pass,:email)");
+    $stmt->bindParam(':user',$username);
+    $stmt->bindParam(':name',$name);
+    $stmt->bindParam(':pass',$password);
+    $stmt->bindParam(':email',$email);
+    $stmt->execute();
 }
 
 function getUserByUsername($username, $conn)

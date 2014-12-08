@@ -20,7 +20,7 @@ if (isset($_SESSION ['permission'])) {
         } else {
             echo json_encode('Success!');
             $_SESSION['username'] = $username;
-            header('Location: ../html/User.html');
+            header('Location: ../html/User.php');
         }
     } else {
         $_SESSION['errMsg'] = "Invalid username or password";

@@ -158,3 +158,8 @@ b {
 i {
     color: white;
 }
+
+#errMsg1 {
+    font-size: 10px;
+    color: red;
+}
