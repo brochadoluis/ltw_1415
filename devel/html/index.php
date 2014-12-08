@@ -74,7 +74,7 @@
                 <div id="signup">
                     <h2>Sign Up</h2>
 
-                    <form action="../php/register.php" id="signup" method="post" onclick="validateForm(this);">
+                    <form action="../php/register.php" id="signup" method="post">
                         <input id="SnapHostID" name="SnapHostID" type="hidden" value="YX4ES97MDBEB"/>
                         <table border="0" cellpadding="5" cellspacing="0" width="600">
                             <tr>
