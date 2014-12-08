@@ -158,3 +158,73 @@ b {
 i {
     color: white;
 }
+
+#yourPolls {
+    margin-top: 5%;
+}
+
+.poll-card {
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  padding: 1.5%;
+  width: 50%;
+  background-color: #F7F7F7;
+  margin: auto auto 1% auto;
+  overflow: hidden;
+}
+
+.poll-card h1 {
+    margin-top: -2%;
+  font-weight: 100%;
+  text-align: center;
+  font-size: 2em;
+}
+
+.poll-card a:hover {
+  opacity: 1;
+}
+
+.poll-card input[type=submit] {
+
+  width: 50%;
+  display: block;
+  margin: auto;
+}
+
+.poll-card input[type=button] {
+  width: 30%;
+  display: inline;
+}
+
+.poll-button {
+    text-align: center;
+  margin-right: 1%;
+    font-size: 14px;
+  font-family: 'Arial', sans-serif;
+  font-weight: 700;
+  height: 36px;
+  padding: 0 8px;
+}
+
+.poll-submit {
+  border: 0px;
+  color: #fff;
+  text-shadow: 0 1px rgba(0,0,0,0.1); 
+  background-color: #4d90fe;
+}
+.poll-submit:hover {
+  border: 0px;
+  text-shadow: 0 1px rgba(0,0,0,0.3);
+  background-color: #357ae8;
+}
+
+.poll-button-new {
+  border: 0px;
+  color: #fff;
+  text-shadow: 0 1px rgba(0,0,0,0.1); 
+  background-color: #4d90fe;
+}
+.poll-button-new:hover {
+  border: 0px;
+  text-shadow: 0 1px rgba(0,0,0,0.3);
+  background-color: #357ae8;
+}
