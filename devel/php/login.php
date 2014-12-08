@@ -19,7 +19,7 @@ if (isset($_SESSION ['permission'])) {
 
         } else {
             echo json_encode('Success!');
-            $_SESSION['username'] = $username;
+            $_SESSION['username'] = $_POST['username'];
             header('Location: ../html/User.php');
         }
     } else {
