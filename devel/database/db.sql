@@ -14,7 +14,7 @@ DROP TABLE IF EXISTS Message;
 
 /* Users */
 CREATE TABLE IF NOT EXISTS User (
-  idUser    INTEGER PRIMARY KEY,
+  idUser INTEGER PRIMARY KEY AUTOINCREMENT,
   username  VARCHAR(16)     NOT NULL,
   name      VARCHAR         NOT NULL,
   password  VARCHAR         NOT NULL,
