@@ -26,10 +26,10 @@ CREATE TABLE IF NOT EXISTS User (
 /* Polls */
 CREATE TABLE IF NOT EXISTS Poll (
   idPoll    INTEGER PRIMARY KEY AUTOINCREMENT,
+  idCreator INTEGER REFERENCES User (idUser) ON DELETE CASCADE,
   title     VARCHAR(85) NOT NULL,
  -- data_post DATE DEFAULT CURRENT_DATE,
-  pic       VARCHAR(40) NOT NULL,
-  idCreator INTEGER REFERENCES User (idUser) ON DELETE CASCADE
+  pic       VARCHAR(40) NOT NULL
  -- pollPermission VARCHAR CHECK (pollPermission LIKE 'public' OR pollPermission LIKE 'private'),
  -- pollState      VARCHAR CHECK (pollState LIKE 'opened' OR pollState LIKE 'closed')
 );
@@ -105,7 +105,7 @@ INSERT INTO User
 VALUES (2, 'joaocardoso', 'Joao Cardoso', 'projetoltw', 'joaocardoso@fe.up.pt');
 
 /* id, title, data_post, pic, idCreator, pollPermission, pollState */
-INSERT INTO Poll VALUES (1, 'First Poll'/*, '26-11-2014'*/, 'path', 1/*, 'public', 'opened'*/);
+INSERT INTO Poll VALUES (1, 1, 'First Poll'/*, '26-11-2014'*/, 'path'/*, 'public', 'opened'*/);
 
 /* id, Poll */
 INSERT INTO Question VALUES (1, 1, 'Quem gosta deste site?');
