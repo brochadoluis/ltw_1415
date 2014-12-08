@@ -25,25 +25,25 @@ CREATE TABLE IF NOT EXISTS User (
 
 /* Polls */
 CREATE TABLE IF NOT EXISTS Poll (
-  idPoll         INTEGER PRIMARY KEY,
-  title          VARCHAR(85) NOT NULL,
-  data_post      DATE DEFAULT CURRENT_DATE,
-  pic VARCHAR NOT NULL,
-  idCreator      INTEGER REFERENCES User ON DELETE CASCADE,
-  pollPermission VARCHAR CHECK (pollPermission LIKE 'public' OR pollPermission LIKE 'private'),
-  pollState      VARCHAR CHECK (pollState LIKE 'opened' OR pollState LIKE 'closed')
+  idPoll    INTEGER PRIMARY KEY AUTOINCREMENT,
+  title     VARCHAR(85) NOT NULL,
+ -- data_post DATE DEFAULT CURRENT_DATE,
+  pic       VARCHAR(40) NOT NULL,
+  idCreator INTEGER REFERENCES User (idUser) ON DELETE CASCADE
+ -- pollPermission VARCHAR CHECK (pollPermission LIKE 'public' OR pollPermission LIKE 'private'),
+ -- pollState      VARCHAR CHECK (pollState LIKE 'opened' OR pollState LIKE 'closed')
 );
 
 /* Questions */
 CREATE TABLE IF NOT EXISTS Question (
-  idQuestion INTEGER PRIMARY KEY,
+  idQuestion INTEGER PRIMARY KEY AUTOINCREMENT,
   idPoll   INTEGER REFERENCES Poll ON DELETE CASCADE,
   question VARCHAR
 );
 
 /* Answers */
 CREATE TABLE IF NOT EXISTS Answer (
-  idAnswer     INTEGER PRIMARY KEY,
+  idAnswer     INTEGER PRIMARY KEY AUTOINCREMENT,
   idQuestion INTEGER REFERENCES Question ON DELETE CASCADE,
   answer VARCHAR
 );
@@ -105,7 +105,7 @@ INSERT INTO User
 VALUES (2, 'joaocardoso', 'Joao Cardoso', 'projetoltw', 'joaocardoso@fe.up.pt');
 
 /* id, title, data_post, pic, idCreator, pollPermission, pollState */
-INSERT INTO Poll VALUES (1, 'First Poll', '26-11-2014', 'path', 1, 'public', 'opened');
+INSERT INTO Poll VALUES (1, 'First Poll'/*, '26-11-2014'*/, 'path', 1/*, 'public', 'opened'*/);
 
 /* id, Poll */
 INSERT INTO Question VALUES (1, 1, 'Quem gosta deste site?');

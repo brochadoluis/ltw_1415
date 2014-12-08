@@ -43,13 +43,11 @@
                     <div id="create_poll">
                         <h2>Create a new Poll</h2>
 
-                        <form method="post" action="../php/upload.php" enctype="multipart/form-data">
+                        <form action="../php/create.php" method="post" enctype="multipart/form-data">
                             <input type="file" name="pic" id="pic" accept="image/*" onchange="readURL(this)">
                             <img id="blah" src="#" alt="your image"/>
-                            <input type="submit">
-                        </form>
-                    </br>
-                    <form method="post" action="../php/create_poll.php" >
+
+                        </br>
                         <div><b>Insert polls title:</b></br>
                             <input id="title" name="title" type="text" maxlength="60"
                             style="width:300px; border:1px solid #999999"/>
@@ -63,37 +61,39 @@
 
                         </div>
                         <div id="answers">
-                            <div>
+                            <div id="answer1">
                                 <b>Answer number 1:</b></br>
 
-                                <input id="answer0" class="answer_type" name="Answer1" type="text" maxlength="60"
+                                <input id="answer1" name="answer1" type="text" maxlength="60"
                                 style="width:150px; border:1px solid #999999"/>
                             </div>
 
-                            <div id="ans">
+                            <div id="answer2">
                                 <b>Answer number 2:</b></br>
 
 
-                                <input id="answer1" class="answer_type" name="Answer2" type="text" maxlength="60"
+                                <input id="answer2" name="answer2" type="text" maxlength="60"
                                 style="width:150px; border:1px solid #999999"/>
 
                             </div>
-                        </br>
-                        <input type="button" name="addAns" id="addAns0" value="Add" onclick="addInput()">
-                    </div>
+                        </div>
+                    </br> 
+                    <input type="button" name="addAns" id="addAns" value="Add Answer" onclick="addInput()">
+                    <input type="button" name="remAns" id="remAns" value="Remove Answer" onclick="removeInput()">
+
                 </br>
 
                 <input type="submit" value="Create!" />
 
-
-                    </form>
-
-                        <h1 class="heading">
-                Your Polls
-            </h1>
-
+            </form>
         </div>
+
+        <h1 class="heading">
+            Your Polls
+        </h1>
+
     </div>
+</div>
 </div>
 </div>
 </body>
