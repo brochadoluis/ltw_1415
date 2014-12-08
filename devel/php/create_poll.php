@@ -88,6 +88,11 @@ function create_poll(){
 			}
 
 			$questions = add_question();
+            $title = $_POST['title'];
+            $title = $_POST['title'];
+            $title = $_POST['title'];
+            $title = $_POST['title'];
+
 
             $ins = $db->prepare('INSERT INTO Poll (idCreator, title, pic, pollPermission, pollState) Values (?, ?, ?, ?, ?)');
 
