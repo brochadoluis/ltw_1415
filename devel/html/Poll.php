@@ -81,18 +81,16 @@
         <div class="container">
             <div class="create_poll_section">
 
-                <h1 class="heading">
-                    Poll
+                <h1 align="center">
+                Poll
                 </h1>
-
-                <div id="yourPolls">
+            </div>
+            <div id="yourPolls">
 
                 </div>
-
             </div>
         </div>
     </div>
-</div>
 </body>
 
 </html>

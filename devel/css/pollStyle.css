@@ -67,6 +67,7 @@ h1 {
     margin-top: 15px;
     margin-bottom: 15px;
     line-height: 1.1;
+    color: #FFF;
 }
 
 .create_poll_section {
@@ -177,6 +178,13 @@ i {
   font-weight: 100%;
   text-align: center;
   font-size: 2em;
+}
+
+.poll-card h2 {
+    margin-top: -2%;
+    font-weight: 100%;
+    text-align: center;
+    font-size: 2em;
 }
 
 .poll-card a:hover {
